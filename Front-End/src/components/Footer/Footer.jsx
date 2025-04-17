@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-content">
             <div className="footer-content-left">
                 <img src={assets.logo} alt="" />
-                <p>Lorem, ipsum dolor sit amat consectetur adipisicing elit. Omni fugs molests silique facere earum, id magni quia esse ducimus obcaecati, deleniti excepturi ullam sint sed ea neque harum non. Dignissimos?</p>
+                <p>Tomato is a full-stack food delivery web application inspired by popular platforms like Zomato and Swiggy. Built using the MERN stack (MongoDB, Express.js, React.js, Node.js), the platform allows users to seamlessly browse restaurants, explore menus, place orders, and manage their carts. The admin panel enables restaurant owners to manage food items, categories, and orders effectively.</p>
                 <div className='footer-social-icons'>
                     <img src={assets.facebook_icon} alt="" />
                     <img src={assets.twitter_icon} alt="" />
