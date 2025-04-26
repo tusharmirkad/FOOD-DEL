@@ -39,10 +39,10 @@ export default function LoginPopup({ setShowLogin }) {
         alert(response.data.message);
       }
     } catch (err) {
-      if (error.response?.data?.message === "jwt expired") {
+      if (err.response?.data?.message === "jwt expired") {
         alert("Session expired. Please log in again.");
       } else {
-        alert(error.response?.data?.message || "Something went wrong!");
+        alert(err.response?.data?.message || "Something went wrong!");
       }
     }
   };
