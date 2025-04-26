@@ -13,11 +13,11 @@ export default function Footer() {
         <div className="footer-content">
             <div className="footer-content-left">
                 <img src={assets.logo} alt="" />
-<<<<<<< HEAD
+
                 <p>Our Food Delivery System lets you easily order food from your favorite restaurants and have it delivered right to your door. Browse through various dishes, select your meal, and place your order with just a few clicks. Enjoy fast and reliable delivery, along with secure payment options for a hassle-free experience.</p>
-=======
+
                 <p>Tomato is a full-stack food delivery web application inspired by popular platforms like Zomato and Swiggy. Built using the MERN stack (MongoDB, Express.js, React.js, Node.js), the platform allows users to seamlessly browse restaurants, explore menus, place orders, and manage their carts. The admin panel enables restaurant owners to manage food items, categories, and orders effectively.</p>
->>>>>>> 8860f6229a5f287e026f03cb2fd31707627c0a71
+
                 <div className='footer-social-icons'>
                     <img src={assets.facebook_icon} alt="" />
                     <img src={assets.twitter_icon} alt="" />
