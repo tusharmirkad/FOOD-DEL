@@ -1,5 +1,8 @@
 import axios from "axios";
 import { createContext, useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+
+
 
 export const StoreContext = createContext(null) ;
 
@@ -21,6 +24,21 @@ const StoreContextProvider = (props) => {
         }
         loadData() ;
     },[]) ;
+
+    useEffect(() => {
+        if (token) {
+          const decoded = jwtDecode(token);
+          const expTime = decoded.exp * 1000;
+          const now = Date.now();
+      
+          if (expTime < now) {
+            setToken(null);
+            localStorage.removeItem("token");
+            alert("Session expired. Please log in again.");
+            setShowLogin(true);
+          }
+        }
+      }, [token]);
 
     const fetchFoodList = async() => {
         const response = await axios.get( url + '/api/food/list') ;

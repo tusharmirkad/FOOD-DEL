@@ -3,16 +3,24 @@ import './Footer.css' ;
 import { assets } from '../../assets/assets';
 
 export default function Footer() {
+
+    const handleRedirect = () => {
+        window.open('https://www.linkedin.com/in/tushar-mirkad-0602b925a/', '_blank');
+      };
+
   return (
     <div className='footer' id='footer'>
         <div className="footer-content">
             <div className="footer-content-left">
                 <img src={assets.logo} alt="" />
-                <p>Lorem, ipsum dolor sit amat consectetur adipisicing elit. Omni fugs molests silique facere earum, id magni quia esse ducimus obcaecati, deleniti excepturi ullam sint sed ea neque harum non. Dignissimos?</p>
+                <p>Our Food Delivery System lets you easily order food from your favorite restaurants and have it delivered right to your door. Browse through various dishes, select your meal, and place your order with just a few clicks. Enjoy fast and reliable delivery, along with secure payment options for a hassle-free experience.</p>
                 <div className='footer-social-icons'>
                     <img src={assets.facebook_icon} alt="" />
                     <img src={assets.twitter_icon} alt="" />
-                    <img src={assets.linkedin_icon} alt="" />
+                    <img src={assets.linkedin_icon} alt="" onClick={handleRedirect}/>
+                </div>
+                <div className="animated-text">
+                    <b>~ Tushar Mirkad</b>
                 </div>
             </div>
 

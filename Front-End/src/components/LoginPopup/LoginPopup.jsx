@@ -1,52 +1,58 @@
 import React, { useContext, useState } from "react";
 import "./LoginPopup.css";
 import { assets } from "../../assets/assets";
-import axios from 'axios' ;
+import axios from "axios";
 import { StoreContext } from "../../context/StoreContext";
-import {useNavigate} from 'react-router-dom' ;
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPopup({ setShowLogin }) {
-
-  const navigate = useNavigate() ;
-  const { url, token, setToken } = useContext(StoreContext) ;
+  const navigate = useNavigate();
+  const { url, token, setToken } = useContext(StoreContext);
 
   const [currState, SetCurrState] = useState("Login");
   const [data, setData] = useState({
     name: "",
     email: "",
-    password: ""
-  }) ;
+    password: "",
+  });
 
-  const onLogin = async(evt) => {
+  const onLogin = async (evt) => {
+    evt.preventDefault();
 
-    evt.preventDefault() ;
+    let newUrl = url;
 
-    let newUrl = url ;
-
-    if(currState == 'Login'){
-      newUrl += '/api/user/login'
-    }else{
-      newUrl += '/api/user/register'
+    if (currState == "Login") {
+      newUrl += "/api/user/login";
+    } else {
+      newUrl += "/api/user/register";
     }
 
-    const response = await axios.post(newUrl, data) ;
+    try {
+      const response = await axios.post(newUrl, data);
 
-    if(response.data.success){
-      setToken(response.data.token) ;
-      localStorage.setItem("token", response.data.token) ;
-      setShowLogin(false) ;
-      navigate('/') ;
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        setShowLogin(false);
+        navigate("/");
+      } else {
+        alert(response.data.message);
+      }
+    } catch (err) {
+      if (error.response?.data?.message === "jwt expired") {
+        alert("Session expired. Please log in again.");
+      } else {
+        alert(error.response?.data?.message || "Something went wrong!");
+      }
     }
-    else{
-      alert(response.data.message) ;
-    }
-  }
+  };
 
   const onChangeHandler = (evt) => {
     setData((prev) => ({
-      ...prev, [evt.target.name]: evt.target.value
-    })) 
-  }
+      ...prev,
+      [evt.target.name]: evt.target.value,
+    }));
+  };
 
   return (
     <div className="login-popup">
@@ -63,12 +69,35 @@ export default function LoginPopup({ setShowLogin }) {
           {currState === "Login" ? (
             <></>
           ) : (
-            <input onChange={onChangeHandler} name="name" value={data.name} type="text" placeholder="Your name" required />
+            <input
+              onChange={onChangeHandler}
+              name="name"
+              value={data.name}
+              type="text"
+              placeholder="Your name"
+              required
+            />
           )}
-          <input onChange={onChangeHandler} name="email" value={data.email} type="email" placeholder="Your email" required />
-          <input onChange={onChangeHandler} name="password" value={data.password} type="password" placeholder="Password" required />
+          <input
+            onChange={onChangeHandler}
+            name="email"
+            value={data.email}
+            type="email"
+            placeholder="Your email"
+            required
+          />
+          <input
+            onChange={onChangeHandler}
+            name="password"
+            value={data.password}
+            type="password"
+            placeholder="Password"
+            required
+          />
         </div>
-        <button type="submit">{currState === "Sign Up" ? "Create account" : "Login"}</button>
+        <button type="submit">
+          {currState === "Sign Up" ? "Create account" : "Login"}
+        </button>
         <div className="login-popup-condition">
           <input type="checkbox" required />
           <p>By continuing, i agree to the terms of use & privacy policy. </p>

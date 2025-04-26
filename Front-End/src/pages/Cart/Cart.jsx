@@ -20,7 +20,7 @@ export default function Cart() {
         <br />
         <hr />
 
-        {food_list.map((item, idx) => {
+        {food_list.map((item, idx) => { 
           if (cartItems[item._id] > 0) {
             return (
               <>
